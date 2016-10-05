@@ -80,11 +80,30 @@ var fourthAJAX = function() {
 		console.log("imageArray", imageArray)
 		console.log(imageArray.length)
 		for(var i =0; i < imageArray.length; i++){
-			console.log("title: ",imageArray[i].title," | ","hdurl: ", imageArray[i].hdurl);
+			console.log("title: ",imageArray[i].title," | ","url: ", imageArray[i].url);
 		};
+		for(var i =0; i < imageArray.length; i++){
+			$slideshow.append('<li><img id="image-'+i+'" class="img-responsive img-thumbnail" src="'+imageArray[i].url+'"/></li>')
+		};
+		$('#image-0').addClass('active');
 	})
 })();
 
 //when dom is ready to be manipulated
 $(document).ready(function() { 
+
+	var $previous = $('#previous');
+	var $next = $('#next');
+
+	$previous.click(function(){
+		console.log(this, "has been clicked");
+	});
+	$next.click(function(){
+		console.log(this, "has been clicked");
+	});
+
+
+		
+
+
 });

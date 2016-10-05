@@ -1,19 +1,31 @@
+
 #slideshow {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
     position:relative;
-    height:350px;
+    height:500px;
+}
+#chevronRight{
+	display: flex;
+	/*align-items: left;*/
+	list-style-type: none;
+    position:relative;
+    height:500px;
+}
+#chevronLeft{
+	display: flex;
+	/*align-items: right;*/
+	list-style-type: none;
+    position:relative;
+    height:500px;
 }
 
-#slideshow IMG {
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:8;
+#slideshow img {
+    display: none;
 }
 
-#slideshow IMG.active {
-    z-index:10;
+#slideshow img.active {
+    display: block;
 }
 
-#slideshow IMG.last-active {
-    z-index:9;
-}
