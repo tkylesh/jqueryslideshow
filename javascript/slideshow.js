@@ -86,24 +86,33 @@ var fourthAJAX = function() {
 			$slideshow.append('<li><img id="image-'+i+'" class="img-responsive img-thumbnail" src="'+imageArray[i].url+'"/></li>')
 		};
 		$('#image-0').addClass('active');
-	})
-})();
 
-//when dom is ready to be manipulated
-$(document).ready(function() { 
+		var $previous = $('#previous');
+		var $next = $('#next');
+		var imgElementArray = $('img').toArray();
 
-	var $previous = $('#previous');
-	var $next = $('#next');
 
-	$previous.click(function(){
-		console.log(this, "has been clicked");
+		$previous.click(function(){
+			//create an array of img elements
+			//then find the element with the class of active
+			//get the id of active, then subtract one if greater than 0
+			//or add 3 if 0
+			console.log(this, "has been clicked");
+			console.log(imgElementArray);
 	});
 	$next.click(function(){
 		console.log(this, "has been clicked");
+		console.log(imgElementArray);
 	});
+	})
+})();
+
+
+
+
 
 
 		
 
 
-});
+
