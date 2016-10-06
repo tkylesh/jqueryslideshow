@@ -1,17 +1,20 @@
 
 var imageArray = [];
 var dateArray = [];
+
 var $slideshow = $('#slideshow');
+var $slide = $("#slide");
+function setSlide(src){
+	$slide.attr('src', src);
+};
+function showSlide(){
+	$slide.fadeIn("fast");
+};
+
 //get the current date
 //then get the image from that day
 //and the three previous to use in slideshow
 var currentDate = new Date();
-// var month = currentDate.getMonth()+1;
-// var day = currentDate.getDate();
-// var output = currentDate.getFullYear() + '-' +
-//     (month<10 ? '0' : '') + month + '-' +
-//     (day<10 ? '0' : '') + day;
-// console.log(output);
 for(var i =0; i < 4; i++){
 	var month = currentDate.getMonth()+1;
 	var day = currentDate.getDate()-i;
@@ -20,7 +23,7 @@ for(var i =0; i < 4; i++){
     (day<10 ? '0' : '') + day;
     dateArray.push(output);
 };
-console.log(dateArray);
+// console.log(dateArray);
 
 
 //Four jquery get requests that return one json object each
@@ -67,8 +70,6 @@ var fourthAJAX = function() {
 
 
 
-
-//goals:
 //push all of the images into an array then populate the page using the array
 (function(){
 	firstAJAX()
@@ -77,34 +78,52 @@ var fourthAJAX = function() {
 	.then(fourthAJAX)
 	.then(
 		function(){
-		console.log("imageArray", imageArray)
-		console.log(imageArray.length)
-		for(var i =0; i < imageArray.length; i++){
-			console.log("title: ",imageArray[i].title," | ","url: ", imageArray[i].url);
-		};
-		for(var i =0; i < imageArray.length; i++){
-			$slideshow.append('<li><img id="image-'+i+'" class="img-responsive img-thumbnail" src="'+imageArray[i].url+'"/></li>')
-		};
-		$('#image-0').addClass('active');
-
+		// console.log("imageArray", imageArray)
+		// console.log(imageArray.length)
+		// for(var i =0; i < imageArray.length; i++){
+		// 	console.log("title: ",imageArray[i].title," | ","url: ", imageArray[i].url);
+		// };
+		setSlide(imageArray[0].url);
+		showSlide();
+	})
+	.then(
+		function(){
+		var counter = 0;
 		var $previous = $('#previous');
 		var $next = $('#next');
-		var imgElementArray = $('img').toArray();
-
-
-		$previous.click(function(){
-			//create an array of img elements
-			//then find the element with the class of active
-			//get the id of active, then subtract one if greater than 0
-			//or add 3 if 0
-			console.log(this, "has been clicked");
-			console.log(imgElementArray);
+		//How to set interval and animate
+		// var slideInterval = setInterval(function(){
+		// }, 2000);
+		// $(selector).animate(obj, time, callback);
+		var previous;
+		var next;
+		$previous.click(function(e){
+			e.preventDefault();
+			$slide.fadeOut("fast");
+			$slide.hide();
+			if(counter === 0){
+				setSlide(imageArray[3].url);
+				counter = 3;
+			}else{
+				counter--;
+				setSlide(imageArray[counter].url);
+			}
+			showSlide();
+		});
+		$next.click(function(e){
+			e.preventDefault();
+			$slide.fadeOut("fast");
+			$slide.hide();
+			if(counter === 3){
+				setSlide(imageArray[0].url);
+				counter = 0;
+			}else{
+				counter++;
+				setSlide(imageArray[counter].url);
+			}
+			showSlide();
+		});
 	});
-	$next.click(function(){
-		console.log(this, "has been clicked");
-		console.log(imgElementArray);
-	});
-	})
 })();
 
 

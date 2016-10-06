@@ -1,10 +1,13 @@
+#slide{
 
+}
 #slideshow {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
     position:relative;
     height:500px;
+    overflow: hidden;
 }
 #chevronRight{
 	display: flex;
@@ -21,11 +24,4 @@
     height:500px;
 }
 
-#slideshow img {
-    display: none;
-}
-
-#slideshow img.active {
-    display: block;
-}
 
