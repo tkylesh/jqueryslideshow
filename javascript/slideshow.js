@@ -7,9 +7,28 @@ var $slide = $("#slide");
 function setSlide(src){
 	$slide.attr('src', src);
 };
-function showSlide(){
-	$slide.fadeIn("fast");
-};
+function showSlide(counter){
+	console.log("fade: ",$('#fadeRadio')[0].checked);
+	console.log("slide: ",$('#slideRadio')[0].checked);
+	if($('#fadeRadio')[0].checked){
+		console.log("fade: ",$('#fadeRadio')[0].checked);
+		$slide.fadeOut("slow",function() {
+			setSlide(imageArray[counter].url);
+			$slide.hide();
+		});
+		$slide.fadeIn("slow");
+	}else if($("#slideRadio")[0].checked){
+		console.log($slide);
+		console.log("slide: ",$('#slideRadio')[0].checked);
+		$slide.animate({ 'margin-bottom': "1000px" }, {duration: 1000, complete: function() {
+			console.log(counter);
+			setSlide(imageArray[counter].url);
+			console.log($slide);
+			$slide.animate({ "margin-bottom": "0" }, 1000 );
+		}});
+		// $slide.animate({ "margin-left":"-1000px" }, 2000 );
+		}
+}
 
 //get the current date
 //then get the image from that day
@@ -83,8 +102,7 @@ var fourthAJAX = function() {
 		// for(var i =0; i < imageArray.length; i++){
 		// 	console.log("title: ",imageArray[i].title," | ","url: ", imageArray[i].url);
 		// };
-		setSlide(imageArray[0].url);
-		showSlide();
+		showSlide(0);
 	})
 	.then(
 		function(){
@@ -95,33 +113,39 @@ var fourthAJAX = function() {
 		// var slideInterval = setInterval(function(){
 		// }, 2000);
 		// $(selector).animate(obj, time, callback);
+
+		function autoplay(){
+			setInterval(function() {
+
+				
+				showSlide(counter);
+
+			}, 3000);
+		};
+
+
+
 		var previous;
 		var next;
 		$previous.click(function(e){
-			e.preventDefault();
-			$slide.fadeOut("fast");
-			$slide.hide();
+			console.log(counter);
 			if(counter === 0){
-				setSlide(imageArray[3].url);
 				counter = 3;
+				showSlide(counter);
 			}else{
 				counter--;
-				setSlide(imageArray[counter].url);
+				showSlide(counter);
 			}
-			showSlide();
 		});
 		$next.click(function(e){
-			e.preventDefault();
-			$slide.fadeOut("fast");
-			$slide.hide();
+			console.log(counter);
 			if(counter === 3){
-				setSlide(imageArray[0].url);
 				counter = 0;
+				showSlide(counter);
 			}else{
 				counter++;
-				setSlide(imageArray[counter].url);
+				showSlide(counter);
 			}
-			showSlide();
 		});
 	});
 })();
