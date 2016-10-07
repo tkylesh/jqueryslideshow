@@ -1,35 +1,26 @@
 
 var imageArray = [];
 var dateArray = [];
-
+var myInterval;
 var $slideshow = $('#slideshow');
 var $slide = $("#slide");
 function setSlide(src){
 	$slide.attr('src', src);
 };
 function showSlide(counter){
-	console.log("fade: ",$('#fadeRadio')[0].checked);
-	console.log("slide: ",$('#slideRadio')[0].checked);
 	if($('#fadeRadio')[0].checked){
-		console.log("fade: ",$('#fadeRadio')[0].checked);
 		$slide.fadeOut("slow",function() {
 			setSlide(imageArray[counter].url);
 			$slide.hide();
 		});
 		$slide.fadeIn("slow");
 	}else if($("#slideRadio")[0].checked){
-		console.log($slide);
-		console.log("slide: ",$('#slideRadio')[0].checked);
-		$slide.animate({ 'margin-bottom': "1000px" }, {duration: 1000, complete: function() {
-			console.log(counter);
+		$slide.animate({ 'margin-bottom': "1200" }, {duration: 3000, complete: function() {
 			setSlide(imageArray[counter].url);
-			console.log($slide);
-			$slide.animate({ "margin-bottom": "0" }, 1000 );
 		}});
-		// $slide.animate({ "margin-left":"-1000px" }, 2000 );
+		$slide.animate({ "margin-bottom": "0" }, 4000 );
 		}
 }
-
 //get the current date
 //then get the image from that day
 //and the three previous to use in slideshow
@@ -89,7 +80,7 @@ var fourthAJAX = function() {
 
 
 
-//push all of the images into an array then populate the page using the array
+//push all of the images into an array then populate the slides from the array
 (function(){
 	firstAJAX()
 	.then(secondAJAX)
@@ -109,25 +100,43 @@ var fourthAJAX = function() {
 		var counter = 0;
 		var $previous = $('#previous');
 		var $next = $('#next');
-		//How to set interval and animate
-		// var slideInterval = setInterval(function(){
-		// }, 2000);
-		// $(selector).animate(obj, time, callback);
+		var previous;
+		var next;
+
 
 		function autoplay(){
-			setInterval(function() {
-
-				
-				showSlide(counter);
-
+			console.log("autoplay is running");
+			myInterval = setInterval(function() {
+				if(counter === 3) {
+					counter = 0;
+				}else {
+					counter++;
+				}
+			showSlide(counter);
 			}, 3000);
 		};
 
 
+		$("#autoBtn").click(function() {
+			console.log("autoplay button clicked");
+			autoplay();
+		});
+		$("#pauseBtn").click(function() {
+			console.log("pause");
+			clearInterval(myInterval);
+		})
+		// $slide.mouseenter(function() {
+		// 	console.log("mouseenter");
+		// 	clearInterval(myInterval);
+		// });
+		// $slide.mouseleave(function() {
+		// 	console.log("mouseleave");
+		// 	autoplay();
+		// });
+		
 
-		var previous;
-		var next;
 		$previous.click(function(e){
+			clearInterval(myInterval);
 			console.log(counter);
 			if(counter === 0){
 				counter = 3;
@@ -138,6 +147,7 @@ var fourthAJAX = function() {
 			}
 		});
 		$next.click(function(e){
+			clearInterval(myInterval);
 			console.log(counter);
 			if(counter === 3){
 				counter = 0;
