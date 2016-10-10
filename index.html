@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jquery Slideshow</title>
+	<!--bootstrap css-->
+	<link rel="stylesheet" type="text/css" href="/lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<!--custom css-->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="jumbotron col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+			<h1 class="text-center">JQuery Slideshow</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+			<div id="chevronLeft" class="col-md-2 col-md-offset-10"> 
+				<button id="previous" type="button" class="btn btn-default btn-lg pull-right">
+					<span class="glyphicon glyphicon-chevron-left center-block" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+				<ul id="slideshow" class="jumbotron">
+					<li><img class="center-block" id="slide" height="100%" width="100%"/></li>
+				</ul>
+			</div>
+		<div id="chevronRight" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+			<div id="chevronRight" class="col-md-2 col-md-pull-1"> 
+				<button id="next" type="button" class="btn btn-default btn-lg pull-left">
+					<span class="glyphicon glyphicon-chevron-right center-block" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+		</div>
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+			<div class="row">
+				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xl-offset-3">
+					<label><input id="fadeRadio" name="animation" type="radio" value="" checked="checked"><strong>fade</strong></label></input>
+				</div>
+				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+					<label><input id="slideRadio" name="animation" type="radio" value=""><strong>slide</strong></label></input>
+				</div>
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-xl-offset-2">
+					<button id="autoBtn" type="button" class="btn btn-success btn-sm">auto-play<span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+				</div>
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-sm-pull-1 col-md-pull-1 col-lg-pull-1 col-xl-pull-1">
+					<button id="pauseBtn" type="button" class="btn btn-danger btn-sm">pause<span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!--jquery javascript library-->
+<script type="text/javascript" src="/lib/node_modules/jquery/dist/jquery.min.js"></script>
+<!--bootstrap javascript-->
+<script type="text/javascript" src="/lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<!--driving javascript file-->
+<script type="text/javascript" src="javascript/slideshow.js"></script>
+</body>
+</html>

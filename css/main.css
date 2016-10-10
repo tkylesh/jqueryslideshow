@@ -1,0 +1,28 @@
+#slide{
+
+}
+#slideshow {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+    position:relative;
+    height:500px;
+    overflow: hidden;
+}
+#chevronRight{
+	display: flex;
+	/*align-items: left;*/
+	list-style-type: none;
+    position:relative;
+    height:500px;
+}
+#chevronLeft{
+	display: flex;
+	/*align-items: right;*/
+	list-style-type: none;
+    position:relative;
+    height:500px;
+}
+
+
+
